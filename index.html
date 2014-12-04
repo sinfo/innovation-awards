@@ -75,8 +75,8 @@
 				</footer>
 			</section>
 
-		
-			
+
+
 		<!-- First -->
 			<section id="first" class="main">
 				<header>
@@ -136,55 +136,47 @@
 			</section>
 
 		<!-- Second -->
-			<!--<section id="second" class="main">
+			<section id="second" class="main">
 				<header>
 					<div class="container">
-						<h2>Datas!</h2>
-						<p>A pré-inscrição no Innovation Awards deve ser feita neste site até às 23h59 de dia <b>15 de Janeiro de 2014</b>.</p>
-						<br>
-						
+						<h2>Inscrições brevemente!</h2>
+						<!--<p>A pré-inscrição no Innovation Awards deve ser feita neste site até às 23h59 de dia <b>15 de Janeiro de 2014</b>.</p>-->
 					</div>
 				</header>
 				<div class="content dark style2">
 					<div class="container" style="text-align:center;">
 						<div class="row">
 							<div class="12u">
-								<h3>Brevemente!</h3>
-							</div>
-						</div>
-						<div class="row">
-							<div class="12u">
-								<h3>E as regras?</h3>
+								<!--<h3>E as regras?</h3>-->
 								<a class="button" href="./regulamento.pdf" target="_blank"><span class="icon fa fa-download"> </span> Regulamento Oficial</a>
 							</div>
 						</div>
-						<div class="row">
+						<!--<div class="row">
 							<div class="12u">
 								<footer>
 									<a href="#third" class="button scrolly">Mas eu quero é prémios!</a>
 								</footer>
 							</div>
-						</div>
+						</div>-->
 					</div>
 				</div>
-			</section>-->
-			
+			</section>
+
 		<!-- Third -->
-			<section id="third" class="main">
+			<!--<section id="third" class="main">
 				<header>
 					<div class="container">
-						<h2>Inscrições brevemente!</h2>
-						<!--<h2>O que é que eu ganho?</h2>
-						<p>Fama, glória, experiência e reconhecimento!</p>-->
+						<h2>O que é que eu ganho?</h2>
+						<p>Fama, glória, experiência e reconhecimento!</p>
 					</div>
 				</header>
-				<!--<div class="content dark style3" style="text-align:center;">
+				<div class="content dark style3" style="text-align:center;">
 					<div class="row">
 						<div class="12u">
 							<h3>Inscrição brevemente!</h3>
 						</div>
 					</div>
-					<!--<div class="container">
+					<div class="container">
 						<div class="row">
 							<div class="12u">
 								<h3>Ah claro, e os seguintes prémios:</h3>
@@ -205,7 +197,7 @@
 								</section>
 							</div>
 						</div>
-						
+
 						<div class="row">
 							<div class="2u" style="text-align:center;">
 								<section>
@@ -223,7 +215,7 @@
 								</section>
 							</div>
 						</div>
-						
+
 						<div class="row">
 							<div class="2u" style="text-align:center;">
 								<section>
@@ -291,15 +283,15 @@
 					<h2>A pré-inscrição já acabou mas nada está perdido! </h2>
 
 					<br>
-				
+
 					<p>Caso a tua inspiração só tenha chegado agora, ainda podes submeter o teu projecto inovador até aos <a href="#second" class="scrolly">prazos acima referidos</a>.</p>
 
 					<p>Todos os pré-inscritos receberão emails com informações detalhadas sobre cada track, prémios e outros detalhes brevemente.</p>
 				</div>
 			</header>
-			
+
 		</section>
-				-->	
+				-->
 			<!--<section id="fourth" class="main">
 				<header>
 					<div class="container">
@@ -529,7 +521,7 @@
 	        url : formURL,
 	        type: "POST",
 	        data : postData,
-	        success:function(data, textStatus, jqXHR) 
+	        success:function(data, textStatus, jqXHR)
 	        {
     		    //data: return data from server
             if(data == 1) {
@@ -544,16 +536,16 @@
 		    		$('#submitButton').attr("disabled", false);
 
 	        },
-	        error: function(jqXHR, textStatus, errorThrown) 
+	        error: function(jqXHR, textStatus, errorThrown)
 	        {
-            //if fails       
+            //if fails
             alert('Fora do período de inscrição');
 	        }
 		    });
 		    e.preventDefault(); //STOP default action
 		});
-		
-		function getSearchVariable(variable) 
+
+		function getSearchVariable(variable)
     {
         var query = window.location.search.substring(1);
         var vars = query.split("&");
@@ -589,7 +581,7 @@
 					<li><a href="http://www.youtube.com/sinfoist" class="fa fa-youtube solo"><span>Youtube+</span></a></li>
 
 					<li></li>
-					
+
 					<li><a href="https://www.facebook.com/pages/Innovation-Awards/231758250328774" class="fa fa-facebook solo"><span>Facebook</span></a></li>
 					<li><a href="mailto:innovation@awards.pt" class="fa fa-envelope solo"><span>Mail</span></a></li>
 				</ul>
