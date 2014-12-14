@@ -1389,7 +1389,7 @@
 
 		.main > .content
 		{
-			padding: 6em 0 6em 0;
+			padding: 4em 0 2em 0;
 		    border-style: solid;
 		    border-width: 0 0 3px 0;
 		    border-image-source: linear-gradient(90deg, rgba(0,205,205,1), rgba(0,205,205,0));
