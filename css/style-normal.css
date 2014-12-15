@@ -45,5 +45,9 @@
 		
 		.main > .content
 		{
+<<<<<<< HEAD
 			padding: 1em 0 2em 0;
+=======
+			padding: 3em 0 2em 0;
+>>>>>>> 6a01b75e0c502c0caf44e6b4733048cd298ff180
 		}
