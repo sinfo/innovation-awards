@@ -14,15 +14,4 @@ $(document).ready(function() {
 		};
     });
 
-    $(document).click(function (e)
-	{
-	    var container = $(".MobileMenu");
-
-	    if (!container.is(e.target) && !e.is(".MobileMenuIcon")// if the target of the click isn't the container...
-	        && container.has(e.target).length === 0) // ... nor a descendant of the container
-	    {
-	        container.hide();
-	    }
-	});
-	
 });

@@ -254,7 +254,7 @@
 							</div>
 						</div>
 
-						<div style="margin-top: 20px; margin-bottom: 0px"><span>(*) O número de gadgets atribuídos é de uma unidade por elemento do grupo, sendo o máximo de quatro por equipa.</span></div>
+						<div style="margin-top: 20px; margin-bottom: 0px"><span class="NotRed">(*) O número de gadgets atribuídos é de uma unidade por elemento do grupo, sendo o máximo de quatro por equipa.</span></div>
 
 						<!--<div class="row">
 							<div class="2u" style="text-align:center;">
@@ -280,13 +280,6 @@
 						</div>-->
 					</div>
 				</div>
-				<header>
-					<div id="fourth" class="container">
-						<h2>Inscrições brevemente!</h2>
-						<!--<h2>O que é que eu ganho?</h2>
-						<p>Fama, glória, experiência e reconhecimento!</p>-->
-					</div>
-				</header>
 			</section>
 		<!-- Fourth -->
 		<!--
@@ -305,7 +298,17 @@
 
 		</section>
 				-->
-			<!--<section id="fourth" class="main">
+			<section id="fourth" class="main InsButton">
+				<header>
+					<div class="container">
+						<h2>Periodo de inscrições aberto</h2>
+						<footer>
+							<a id="Inscrever" class="button scrolly">Inscrever</a>
+						</footer>
+					</div>
+				</header>
+			</section>
+			<section id="fourth" class="main formInsc">
 				<header>
 					<div class="container">
 						<h2>Formulário de inscrição</h2>
@@ -314,7 +317,7 @@
 				<div class="content style4 featured">
 					<div class="container small">
 						<form name="ajaxform" id="ajaxform" action="form.php" method="POST">
-							<div class="row">
+							<!--<div class="row">
 								<div class="12u">
 									<select id="registeredSelector" name="registeredSelector">
 										<option class="placeholder" selected disabled>Pré inscreveste-te?</option>
@@ -322,7 +325,7 @@
 										<option value="notRegistered">Não, tenho que me inscrever</option>
 									</select>
 								</div>
-							</div>
+							</div>-->
 							<br>
 							<div id="notRegisteredFields">
 								<div class="row">
@@ -330,105 +333,139 @@
 										<h3>Categoria</h3>
 										<select id="categorySelector" name="categorySelector">
 											<option class="placeholder" selected disabled>Escolhe a categoria</option>
-	    								<option value="jogos">Jogos</option>
-											<option value="mobile">Mobile</option>
-											<option value="electro">Electrónica</option>
-											<option value="seguranca">Segurança</option>
+	    								<option value="videogames">Videogames</option>
+											<option value="lifestyle">Lifestyle</option>
+											<option value="social">Social</option>
+											<option value="business">Business</option>
 										</select>
+										<span id="ErrorCategorySel"></span>
 									</div>
 								</div>
 								<br>
 								<div id="boxes">
-									<div id="seguranca">
-										<div class="row">
-											<h3>Detalhes do Participante</h3>
-											<div class="6u"><input type="text" class="text" id="name" name="name" placeholder="Nome" /></div>
-											<div class="6u"><input type="text" class="text" id="cellphone" name="cellphone" placeholder="Telemóvel" /></div>
-											<div class="6u"><input type="text" class="text" id="email" name="email" placeholder="Email" /></div>
-											<div class="6u"><input type="text" class="text" id="institution" name="institution" placeholder="Instituição" /></div>
-										</div>
-									</div>
 									<div id="others">
 										<div class="half row">
 											<div class="12u">
 												<h3>Detalhes da Equipa</h3>
-												<input type="text" class="text" id="team" name="team" placeholder="Nome do Projecto" />
+												<input type="text" style="border-style: solid; border-color: red;" class="text" id="team" name="team" placeholder="Nome do Projecto" />
+												<span id="ErrorProjectname"></span>
 											</div>
 										</div>
 										<div class="half row">
 											<div class="12u">
 												<select id="elementsSelector" name="elementsSelector">
 													<option value="0" class="placeholder" selected disabled>Número de elementos</option>
-													<option value="1">Um Elemento</option>
-													<option value="2">Dois Elementos</option>
-													<option value="3">Três Elementos</option>
-													<option value="4">Quatro Elementos</option>
+													<option value="1" name="1">Um Elemento</option>
+													<option value="2" name="2">Dois Elementos</option>
+													<option value="3" name="3">Três Elementos</option>
+													<option value="4" name="4">Quatro Elementos</option>
 												</select>
 											</div>
 										</div>
-										<div id="elements">
+										<div id="elements" style="margin-bottom: 10px;">
 											<br>
 											<div id="element1" class="row half">
-												<h2>Primeiro Elemento</h2>
+												<h2>Primeiro Elemento - Responsavel</h2>
 												<div class="row">
-													<div class="6u"><input type="text" class="text" id="name1" name="name1" placeholder="Nome" /></div>
-													<div class="6u"><input type="text" class="text" id="cellphone1" name="cellphone1" placeholder="Telemóvel" /></div>
-													<div class="6u"><input type="text" class="text" id="email1" name="email1" placeholder="Email" /></div>
-													<div class="6u"><input type="text" class="text" id="institution1" name="institution1" placeholder="Instituição" /></div>
+													<div class="6u"><input type="text" class="text" id="name1" name="name1" placeholder="Nome" /><span id="ErrorName1"></span></div>
+													<div class="6u"><input type="text" class="text" id="email1" name="email1" placeholder="Email" /><span id="ErrorEmail1"></span></div>
 												</div>
+												<div class="row row2">
+														<div class="6u"><input type="text" class="text" id="cellphone1" name="cellphone1" placeholder="Telemóvel" /><span id="ErrorCellphone1"></span></div>
+														<!--<div class="6u"><input type="text" class="text" id="institution1" name="institution1" placeholder="Instituição" /></div>-->
+												</div>												
 											</div>
 											<br>
 											<div id="element2" class="row half">
 												<h2>Segundo Elemento</h2>
 												<div class="row">
-													<div class="6u"><input type="text" class="text" id="name2" name="name2" placeholder="Nome" /></div>
+													<div class="6u"><input type="text" class="text" id="name2" name="name2" placeholder="Nome" /><span id="ErrorName2"></span></div>
+													<div class="6u"><input type="text" class="text" id="email2" name="email2" placeholder="Email" /><span id="ErrorEmail2"></span></div>
+											 <!--<div class="row row2">
 													<div class="6u"><input type="text" class="text" id="cellphone2" name="cellphone2" placeholder="Telemóvel" /></div>
-													<div class="6u"><input type="text" class="text" id="email2" name="email2" placeholder="Email" /></div>
 													<div class="6u"><input type="text" class="text" id="institution2" name="institution2" placeholder="Instituição" /></div>
+												</div>-->
 												</div>
 											</div>
 											<br>
 											<div id="element3" class="row half">
 												<h2>Terceiro Elemento</h2>
 												<div class="row">
-													<div class="6u"><input type="text" class="text" id="name3" name="name3" placeholder="Nome" /></div>
-													<div class="6u"><input type="text" class="text" id="cellphone3" name="cellphone3" placeholder="Telemóvel" /></div>
-													<div class="6u"><input type="text" class="text" id="email3" name="email3" placeholder="Email" /></div>
-													<div class="6u"><input type="text" class="text" id="institution3" name="institution3" placeholder="Instituição" /></div>
+													<div class="6u"><input type="text" class="text" id="name3" name="name3" placeholder="Nome" /><span id="ErrorName3"></span></div>
+													<div class="6u"><input type="text" class="text" id="email3" name="email3" placeholder="Email" /><span id="ErrorEmail3"></span></div>
+													<!--<div class="row row2">
+													 <div class="6u"><input type="text" class="text" id="cellphone3" name="cellphone3" placeholder="Telemóvel" /></div>
+													 <div class="6u"><input type="text" class="text" id="institution3" name="institution3" placeholder="Instituição" /></div>
+													</div>-->													
 												</div>
 											</div>
 											<br>
 											<div id="element4" class="row half">
 												<h2>Último Elemento</h2>
 												<div class="row">
-													<div class="6u"><input type="text" class="text" id="name4" name="name4" placeholder="Nome" /></div>
+													<div class="6u"><input type="text" class="text" id="name4" name="name4" placeholder="Nome" /><span id="ErrorName4"></span></div>
+													<div class="6u"><input type="text" class="text" id="email4" name="email4" placeholder="Email" /><span id="ErrorEmail4"></span></div>
+												<!--<div class="row row2">
 													<div class="6u"><input type="text" class="text" id="cellphone4" name="cellphone4" placeholder="Telemóvel"/></div>
-													<div class="6u"><input type="text" class="text" id="email4" name="email4" placeholder="Email" /></div>
 													<div class="6u"><input type="text" class="text" id="institution4" name="institution4" placeholder="Instituição" /></div>
+												</div>-->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div id="registeredFields">
+							<!--<div id="registeredFields">
 								<div class="half row">
 									<div class="12u">
 										<input type="text" class="text" id="existingTeam" name="existingTeam" placeholder="Nome do Projecto" />
 									</div>
 								</div>
 							</div>
-							<br>
+							<br>-->
 							<div id="mutualFields">
 								<div class="half row">
-									<div class="12u">
+									<div class="12u" style="margin-bottom: 10px;">
 										<h3>Detalhes do Projecto</h3>
 										<textarea id="projectDescription" name="projectDescription" rows="5" placeholder="Descrição do Projecto"></textarea>
-										<br>
-										<textarea id="projectMaterial" name="projectMaterial" rows="5" placeholder="Material necessario para a apresentação"></textarea>
-										<br>
-										<input id="projectLink" type="text" class="text" name="projectLink" placeholder="Link para o ficheiro" />
+										<span id="ErrorProjectDescription"></span>
+									<!--	<br>
+										<textarea id="projectMaterial" name="projectMaterial" rows="5" placeholder="Material necessario para a apresentação"></textarea>-->
 									</div>
+									<div class="12u" style="margin-bottom: 10px;">
+										<h2>Upload Projecto</h2>
+										<div class="12u" id="UploadProjecto">
+											<input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
+											<div class="12u FileInfo">
+												<div class="12u FileInfo2">
+													<div class="7u" id="ProjfileName"></div>
+    											<div class="2u" id="ProjfileSize"></div>
+    											<div class="3u" id="ProjfileType"></div>
+												</div>
+    										<div class="12u ButtonUp">
+    											<a id="UploadFicheiro" class="button" onclick="uploadFile();">Upload</a>
+    										</div>
+    										<div class="12u" class="UploadFile" id="UploadFile"></div>
+											</div>
+										</div>
+										<span id="ErrorUploadProjecto"></span>
+										<h6 class="12u" id="ProjectoRec">O ficheiro deve ter o formato <span id="RightFileName">CATEGORIA_NOME_DA_EQUIPA.zip </span>e não deve exceder os 100mb</h6>
+										<!--<input id="projectLink" type="text" class="text" name="projectLink" placeholder="Link para o ficheiro" />-->
+									</div>
+									<div class="12u">
+										<h2>Upload Declaração</h2>
+										<div class="12u" id="UploadDeclaracao">
+											<input type="file" name="fileToUploadDoc" id="fileToUploadDoc" onchange="fileSelectedDoc();"/>
+											<div class="12u FileInfo FileInfo2">
+												<div class="9u" id="DocfileName"></div>
+    										<div class="3u" id="DocfileType"></div>
+    										<div class="12u" class="UpladFile" id="UploadFileDoc"></div>
+											</div>
+										</div>
+										<span id="ErrorUploadDeclaracao"></span>
+										<h6 class="12u" id="ProjectoRec">O ficheiro deve ter o formato <span id="RightDocName">CATEGORIA_NOME_DA_EQUIPA.pdf </span></h6>
+										<!--<input id="projectLink" type="text" class="text" name="projectLink" placeholder="Link para o ficheiro" />-->
+									</div>					
 								</div>
 							</div>
 							<br>
@@ -436,7 +473,7 @@
 							<div class="row">
 								<div class="12u">
 									<ul class="actions">
-										<li><input id="submitButton" type="submit" class="button" value="Submeter Inscrição" /></li>
+										<li><input id="submitButton" type="submit" class="button" value="Submeter inscrição" /></li>
 										<li><input type="reset" class="button alt" value="Limpar Formulário" /></li>
 									</ul>
 								</div>
@@ -444,14 +481,15 @@
 						</form>
 					</div>
 				</div>
-
-				<header>
+			</section>
+			<section id="fourth" class="main InsMade">
+				<header id="fourth" class="main">
 					<div class="container">
 						<h2>See you soon!</h2>
 					</div>
 				</header>
-			</section>-->
-
+			</section>
+	<script src="js/regis.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
             var backColor = "#000";
@@ -466,120 +504,6 @@
             });
         });
     </script>
-
-		<script type="text/javascript">
-
-		$("#categorySelector").change(function(){
-			if(this.value == "seguranca"){
-				$("#" + this.value).show().siblings().hide();
-				$("#mutualFields").hide();
-			}else{
-				$("#others").show().siblings().hide();
-				$("#mutualFields").show();
-			}
-		});
-
-		$("#categorySelector").change();
-
-		$("#registeredSelector").change(function(){
-			if(this.value == "notRegistered"){
-				$("#notRegisteredFields").show();
-				$("#registeredFields").hide();
-
-				$("#mutualFields").show();
-			}else if(this.value == "registered"){
-				$("#notRegisteredFields").hide();
-				$("#registeredFields").show();
-
-				$("#mutualFields").show();
-			} else {
-				$("#notRegisteredFields").hide();
-				$("#registeredFields").hide();
-
-				$("#mutualFields").hide();
-			}
-		});
-
-		$("#registeredSelector").change();
-
-		$("#elementsSelector").change(function(){
-			if(this.value == "1"){
-				$("#element1").show().siblings().hide();
-			}else if(this.value == "2"){
-				$("#element1").show().siblings().hide();
-				$("#element2").show();
-			}else if(this.value == "3"){
-				$("#element1").show().siblings().show();
-				$("#element4").hide();
-			}else if(this.value == "4"){
-				$("#element1").show().siblings().show();
-			}else{
-				$("#element1").hide().siblings().hide();
-			}
-
-		});
-
-		$("#elementsSelector").change();
-
-		$("#ajaxform").submit(function(e)
-		{
-		    var postData = $(this).serializeArray();
-		    var formURL = $(this).attr("action");
-
-		    $("#submitButton").val("A submeter...");
-		    $('#submitButton').attr("disabled", true);
-
-		    $.ajax(
-		    {
-	        url : formURL,
-	        type: "POST",
-	        data : postData,
-	        success:function(data, textStatus, jqXHR)
-	        {
-    		    //data: return data from server
-            if(data == 1) {
-	            $("#submitButton").val("Submetido!");
-							alert('Great Success!');
-            } else {
-	            $("#submitButton").val("Oh no!");
-							alert(data.split("0 ")[1]);
-            }
-
-    		    $("#submitButton").val("Submeter Inscrição");
-		    		$('#submitButton').attr("disabled", false);
-
-	        },
-	        error: function(jqXHR, textStatus, errorThrown)
-	        {
-            //if fails
-            alert('Fora do período de inscrição');
-	        }
-		    });
-		    e.preventDefault(); //STOP default action
-		});
-
-		function getSearchVariable(variable)
-    {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
-            var pair = vars[i].split("=");
-            if(pair[0] == variable){
-                return unescape(pair[1]).split("+").join(" ");
-            }else{
-                return "";
-            }
-        }
-    }
-
-    $(document).ready(function(){
-        $("#existingTeam").val(getSearchVariable("team"));
-        if(getSearchVariable("team") != "") {
-        	$('#registeredSelector').val('registered');
-					$("#registeredSelector").change();
-        }
-    });
-		</script>
 		<!-- Footer -->
 			<section id="footer">
 				<ul class="icons">

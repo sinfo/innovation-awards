@@ -1521,3 +1521,80 @@
 				{
 					box-shadow: inset 0 0 0 1px #d6d6d6;
 				}
+
+.row2{
+	margin-top: -20px;
+}
+
+#UploadProjecto{
+	width: 100%;
+	min-height: 50px;
+	color: black;
+	background: white;
+	padding-top: 10px;
+	padding-left: 10px;
+	border-radius: 4px;
+}
+
+#UploadProjecto input{
+	width: 100%;
+	color: black;
+}
+
+.FileInfo{
+	font-size: 12px;
+}
+
+.FileInfo2{
+	text-align: left;
+}
+
+.FileInfo #FileName {
+	overflow: hidden;
+}
+
+#ProjectoRec{
+	padding-top: 5px;
+	font-size: 10px;
+}
+
+#UploadDeclaracao{
+	width: 100%;
+	min-height: 50px;
+	color: black;
+	background: white;
+	padding-top: 10px;
+	padding-left: 10px;
+	border-radius: 4px;
+}
+
+#UploadDeclaracao input{
+	width: 100%;
+	color: black;
+}
+
+span:not(.NotRed){
+	color: red;
+}
+
+#RightFileName {
+	font-weight: bold;
+	color: #076AE2;
+}
+
+#RightDocName {
+	font-weight: bold;
+	color: #076AE2;
+}
+
+#UploadFicheiro {
+	height: 40px;
+	padding-top: 6px;
+	margin-bottom: 2px;
+}
+
+.ButtonUp {
+	float: none;
+	display: none;
+	width: 100%;
+}
