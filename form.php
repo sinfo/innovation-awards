@@ -1,19 +1,31 @@
 <?
 
-		$C = $GN = $NE = $EN1 = $EN2 = $EN3 = $EN4 = $EE1 = $EE2 = $EE3 = $EE4 = $EP1 = $PD = "";
+		$C = $GN = $NE = $EP1 = $PD = "";
+		$EN = [];
+		$EE = [];
 
 		$C = $_POST["categorySelector"];
 		$GN = $_POST["team"];
 		$NE = $_POST["elementsSelector"];
-		$EN1 = $_POST["name1"];
-		$EE1 = $_POST["email1"];
+		$EN[1] = $_POST["name1"];
+		$EE[1] = $_POST["email1"];
 		$EP1 = $_POST["cellphone1"];
-		$EN2 = $_POST["name2"];
-		$EE2 = $_POST["email2"];
-		$EN3 = $_POST["name3"];
-		$EE3 = $_POST["email3"];
-		$EN4 = $_POST["name4"];
-		$EE4 = $_POST["email4"];
+		$EN[2] = $_POST["name2"];
+		$EE[2] = $_POST["email2"];
+		$EN[3] = $_POST["name3"];
+		$EE[3] = $_POST["email3"];
+		$EN[4] = $_POST["name4"];
+		$EE[4] = $_POST["email4"];
+		$EN[5] = $_POST["name5"];
+		$EE[5] = $_POST["email5"];
+		$EN[6] = $_POST["name6"];
+		$EE[6] = $_POST["email6"];
+		$EN[7] = $_POST["name7"];
+		$EE[7] = $_POST["email7"];
+		$EN[8] = $_POST["name8"];
+		$EE[8] = $_POST["email8"];
+		$EN[9] = $_POST["name9"];
+		$EE[9] = $_POST["email9"];
 		$PD = $_POST["projectDescription"];
 
 
@@ -22,11 +34,8 @@
 		$CU = strtoupper($C);
 
 		$Proj = $CU . '_' . $GNU . '.zip';
-		$Dec = 	$CU . '_' . $GNU . '.pdf';	
 
 		$LinkProj = 'http://www.innovation.awards.pt/files/Proj/' . $Proj;
-
-		$LinkDec = 'http://www.innovation.awards.pt/files/Docs/' . $Dec;
 
 		function verification($data) {
 		  	$data = trim($data);
@@ -35,22 +44,10 @@
 		 	return $data;
 		}
 
-		if ($NE >= 2) {
-			$ExtraLine = '<br><li>Elemento 2: ' . $EN2 .'; </li><li>Email: ' . $EE2 .'; </li>';
+		$ExtraLine = '';
 
-			if ($NE >= 3) {
-				$ExtraLine .='<br><li>Elemento 3: ' . $EN3 .'; </li><li>Email: ' . $EE3 .'; </li>';
-				
-				if ($NE == 4) {
-					$ExtraLine .='<br><li>Elemento 4 ' . $EN4 .'; </li><li>Email: ' . $EE4 .'; </li>';
-				}else {
-					$ExtraLine .= '';
-				}
-			}else {
-				$ExtraLine .= '';
-			}
-		}else {
-			$ExtraLine = '';
+		for ($i=2; $i <= $NE ; $i++) { 
+			$ExtraLine .='<br><li>Elemento' . $i .': ' . $EN[$i] .'; </li><li>Email: ' . $EE[$i] .'; </li>';
 		}
 
 		//Email Rita:
@@ -75,8 +72,8 @@
 			<p>Numero de elementos: " . $NE . "; </p>
 			<p>Dados: </p>
 			<ul>
-				<li>Elemento responsavel: " . $EN1 ."; </li>
-				<li>Email: " . $EE1 ."; </li>
+				<li>Elemento responsavel: " . $EN[1] ."; </li>
+				<li>Email: " . $EE[1] ."; </li>
 				<li>Telemovel: " . $EP1 . ";</li>"
 				. $ExtraLine .
 			"</ul>
@@ -85,8 +82,6 @@
 			"<br>
 			<p>Link Projecto: </p>
 			<p><a href='http://www.innovation.awards.pt/files/Proj/" . $Proj . "'>" . $LinkProj . "</a></p>
-			<p>Documento assinado: </p>
-			<p><a href='http://www.innovation.awards.pt/files/Docs/" . $Dec . "'>" . $LinkDec . "</a></p>
 		</body>
 		</html>
 		";
@@ -94,7 +89,7 @@
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 		// Additional headers
-		$headers .= 'From: Miguel <miguel.f.araujo@tecnico.ulisboa.pt>' . "\r\n";
+		$headers .= 'From: Innovation-awards <innovation@awards.pt>' . "\r\n";
 		//Send
 		mail($to, $Subject, $message, $headers);
 

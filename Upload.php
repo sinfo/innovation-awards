@@ -8,7 +8,12 @@
 	    echo "ERROR: Please browse for a file before clicking the upload button.";
 	    exit();
 	}
-	if(copy($fileTmpLoc,"files/$fileName")){
+
+	if (!file_exists('files/Proj/')) {
+	    mkdir('files/Proj/', 0777, true);
+	}
+
+	if(copy($fileTmpLoc,"files/Proj/$fileName")){
 	    echo $fileName . ' ' . $fileType . ' ' . $fileSize;
 
 	    //"$fileName upload is complete";

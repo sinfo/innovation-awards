@@ -27,8 +27,8 @@ $("#team").blur(function(){
 	    RightFileName = RightFileName + "_" + GroupName.toUpperCase();
 
 	    $("#RightFileName").text(RightFileName + ".zip ");
-	    $("#RightDocName").text(RightFileName + ".pdf");
 }});
+
 $("#elementsSelector").change(function(){
 	if(this.value == "1"){
 		$("#element1").show().siblings().hide();
@@ -36,13 +36,38 @@ $("#elementsSelector").change(function(){
 		$("#element1").show().siblings().hide();
 		$("#element2").show();
 	}else if(this.value == "3"){
-		$("#element1").show().siblings().show();
-		$("#element4").hide();
+		$("#element1").show().siblings().hide();
+		$("#element2").show();
+		$("#element3").show();
 	}else if(this.value == "4"){
+		$("#element1").show().siblings().hide();
+		$("#element2").show();
+		$("#element3").show();
+		$("#element4").show();
+	}else if(this.value == "5"){
+		$("#element1").show().siblings().hide();
+		$("#element2").show();
+		$("#element3").show();
+		$("#element4").show();
+		$("#element5").show();
+	}else if(this.value == "6"){
+		$("#element1").show().siblings().show();
+		$("#element7").hide();
+		$("#element8").hide();
+		$("#element9").hide();
+	}else if(this.value == "7"){
+		$("#element1").show().siblings().show();
+		$("#element8").hide();
+		$("#element9").hide();
+	}else if(this.value == "8"){
+		$("#element1").show().siblings().show();
+		$("#element9").hide();
+	}else if(this.value == "9"){
 		$("#element1").show().siblings().show();
 	}else{
 		$("#element1").hide().siblings().hide();
 	}});
+
 $("#elementsSelector").change();
 var emailForm = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 var phoneForm = /^[+-]?([0-9]{1,5})?\s?([0-9]{9,12})+$/;
@@ -80,8 +105,49 @@ $("#name4").blur(function(){
 	else{ $("#ErrorName4").text("");}});
 $("#email4").blur(function(){
 	if($.trim(this.value) == ""){ $("#ErrorEmail4").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail3").text("Email tem o formato errado");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail4").text("Email tem o formato errado");}
 	else{ $("#ErrorEmail4").text("");}});
+//Check if element five is filled:
+$("#name5").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorName5").text("Este campo é obrigatorio");}
+	else{ $("#ErrorName5").text("");}});
+$("#email5").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorEmail5").text("Este campo é obrigatorio");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail5").text("Email tem o formato errado");}
+	else{ $("#ErrorEmail5").text("");}});
+//Check if element six is filled:
+$("#name6").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorName6").text("Este campo é obrigatorio");}
+	else{ $("#ErrorName6").text("");}});
+$("#email6").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorEmail6").text("Este campo é obrigatorio");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail6").text("Email tem o formato errado");}
+	else{ $("#ErrorEmail6").text("");}});
+//Check if element seven is filled:
+$("#name7").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorName7").text("Este campo é obrigatorio");}
+	else{ $("#ErrorName7").text("");}});
+$("#email7").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorEmail7").text("Este campo é obrigatorio");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail7").text("Email tem o formato errado");}
+	else{ $("#ErrorEmail7").text("");}});
+//Check if element eight is filled:
+$("#name8").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorName8").text("Este campo é obrigatorio");}
+	else{ $("#ErrorName8").text("");}});
+$("#email8").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorEmail8").text("Este campo é obrigatorio");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail8").text("Email tem o formato errado");}
+	else{ $("#ErrorEmail8").text("");}});
+//Check if element nine is filled:
+$("#name9").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorName9").text("Este campo é obrigatorio");}
+	else{ $("#ErrorName9").text("");}});
+$("#email9").blur(function(){
+	if($.trim(this.value) == ""){ $("#ErrorEmail9").text("Este campo é obrigatorio");}
+	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail9").text("Email tem o formato errado");}
+	else{ $("#ErrorEmail9").text("");}});
+
 //Check if "Detalhe do projecto" is filled:
 $("#projectDescription").blur(function(){
 	if(this.value == ""){ $("#ErrorProjectDescription").text("Este campo é obrigatorio");}
@@ -209,84 +275,6 @@ function abortHandler(evt) {
   alert("The upload has been canceled by the user or the browser dropped the connection.");
 }
 
-//File Doc assinado
-function fileSelectedDoc() {
-  var file = document.getElementById('fileToUploadDoc').files[0];
-
-  if (file) {
-
-  	 //Cheack File extention:
-		 	var FileName = file.name;
-		 	var FileExt = FileName.split('.')[FileName.split('.').length - 1].toLowerCase();
-
-		 	if( FileExt != 'pdf'){
-		 			$("#ErrorUploadDeclaracao").text("O ficheiro tem a extenção errada");
-		 			return;
-		 	}else{
-		 		 $("#ErrorUploadDeclaracao").text("");
-		 	}
-
-  	//Check File name:
-			var Category = document.getElementById('categorySelector').value;
-			var GroupName = document.getElementById('team').value;
-
-	    var RightFileName = Category.toUpperCase();
-	    GroupName = $.trim(GroupName);
-	    GroupName = GroupName.replace(/ /gi, '_');
-	    RightFileName = RightFileName + "_" + GroupName.toUpperCase();
-
-	    var FileNameSize = FileName.length;
-	    var EndCut = FileNameSize - 4;
-	    var FileName = FileName.substring(0,EndCut);
-	    var ExpectedFileWithExt = file.name;
-
- 			if(FileName != RightFileName){
-		 			$("#ErrorUploadDeclaracao").text("O ficheiro tem o nome errado");
-		 			return;
-		 	}else{
-		 		 $("#ErrorUploadDeclaracao").text("");
-		 	}
-
-		 			 	//Output to HTML          
-		    document.getElementById('DocfileName').innerHTML = 'Name: ' + FileName;
-		    document.getElementById('DocfileType').innerHTML = 'Type: ' + FileExt;
-
-		    uploadFileDoc(file);
-		}
-
-
-}
-
-var DocUp = false;
-
-function uploadFileDoc(file){
-	var form = new FormData(file);
-
-  form.append("fileToUploadDoc", file);
-  var ajax = new XMLHttpRequest();
-	ajax.upload.addEventListener("progress", progressHandlerDoc, false);
-	ajax.addEventListener("load", completeHandlerDoc, false);
-	ajax.addEventListener("error", errorHandlerDoc, false);
-	ajax.addEventListener("abort", abortHandlerDoc, false);
-	ajax.open("POST", "UploadDoc.php");
-	ajax.send(form);
-}
-
-function progressHandlerDoc(evt) {
-  if (evt.lengthComputable) {}
-  else {
-    //document.getElementById('progressNumber').innerHTML = 'unable to compute';
-  }
-}
-
-function completeHandlerDoc(evt) {
-	DocUp = true;
-}
-
-function errorHandlerDoc(evt) {}
-
-function abortHandlerDoc(evt) {}
-
 $("#ajaxform").submit(function(form){
 
 	form.preventDefault();
@@ -296,7 +284,7 @@ $("#ajaxform").submit(function(form){
 	var C = document.getElementById('categorySelector').value;
 	var PD = document.getElementById('projectDescription').value;
 
-  if ((NE != 1) && (NE != 2) && (NE != 3) && (NE != 4) && (T != '') && (C != 'Escolhe a categoria') && (PD != '')){
+  if ((NE != 1) && (NE != 2) && (NE != 3) && (NE != 4) && (NE != 5) && (NE != 6) && (NE != 7) && (NE != 8) && (NE != 9) && (T != '') && (C != 'Escolhe a categoria') && (PD != '')){
 		alert("Escolha o numero de elementos do grupo e preencha os respectivos dados");
 		return;
 	}
