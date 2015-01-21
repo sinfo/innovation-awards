@@ -29,124 +29,32 @@ $("#team").blur(function(){
 	    $("#RightFileName").text(RightFileName + ".zip ");
 }});
 
-$("#elementsSelector").change(function(){
-	if(this.value == "1"){
-		$("#element1").show().siblings().hide();
-	}else if(this.value == "2"){
-		$("#element1").show().siblings().hide();
-		$("#element2").show();
-	}else if(this.value == "3"){
-		$("#element1").show().siblings().hide();
-		$("#element2").show();
-		$("#element3").show();
-	}else if(this.value == "4"){
-		$("#element1").show().siblings().hide();
-		$("#element2").show();
-		$("#element3").show();
-		$("#element4").show();
-	}else if(this.value == "5"){
-		$("#element1").show().siblings().hide();
-		$("#element2").show();
-		$("#element3").show();
-		$("#element4").show();
-		$("#element5").show();
-	}else if(this.value == "6"){
-		$("#element1").show().siblings().show();
-		$("#element7").hide();
-		$("#element8").hide();
-		$("#element9").hide();
-	}else if(this.value == "7"){
-		$("#element1").show().siblings().show();
-		$("#element8").hide();
-		$("#element9").hide();
-	}else if(this.value == "8"){
-		$("#element1").show().siblings().show();
-		$("#element9").hide();
-	}else if(this.value == "9"){
-		$("#element1").show().siblings().show();
-	}else{
-		$("#element1").hide().siblings().hide();
-	}});
 
-$("#elementsSelector").change();
+//Add new members:
+var NumElementos = 1
+
+$("#AddMember").click(function() {
+	NumElementos++;
+	$('#elements').append(' <div id="element' + NumElementos + '" class="row half">	<h2>' + NumElementos + 'º Elemento</h2><div class="row"><div class="6u"><input type="text" class="text" id="name' + NumElementos + '" name="name' + NumElementos + '" placeholder="Nome" /><span id="Errorname' + NumElementos + '"></span></div><div class="6u"><input type="text" class="text" id="email' + NumElementos + '" name="email' + NumElementos + '" placeholder="Email" /><span id="Erroremail' + NumElementos + '"></span></div></div></div>');
+
+});
+
+//Check if "Elementos" is filled correctly:
 var emailForm = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 var phoneForm = /^[+-]?([0-9]{1,5})?\s?([0-9]{9,12})+$/;
-//Check if element one is filled:
-$("#name1").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName1").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName1").text("");}});
-$("#email1").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail1").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail1").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail1").text("");}});
-$("#cellphone1").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorCellphone1").text("Este campo é obrigatorio");}
-	else if(!phoneForm.test($.trim(this.value))){$("#ErrorCellphone1").text("Numero de telemovel tem o formato errado");}
-	else{ $("#ErrorCellphone1").text("");}});
-//Check if element two is filled:
-$("#name2").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName2").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName2").text("");}});
-$("#email2").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail2").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail2").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail2").text("");}});
-//Check if element three is filled:
-$("#name3").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName3").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName3").text("");}});
-$("#email3").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail3").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail3").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail3").text("");}});
-//Check if element four is filled:
-$("#name4").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName4").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName4").text("");}});
-$("#email4").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail4").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail4").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail4").text("");}});
-//Check if element five is filled:
-$("#name5").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName5").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName5").text("");}});
-$("#email5").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail5").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail5").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail5").text("");}});
-//Check if element six is filled:
-$("#name6").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName6").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName6").text("");}});
-$("#email6").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail6").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail6").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail6").text("");}});
-//Check if element seven is filled:
-$("#name7").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName7").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName7").text("");}});
-$("#email7").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail7").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail7").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail7").text("");}});
-//Check if element eight is filled:
-$("#name8").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName8").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName8").text("");}});
-$("#email8").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail8").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail8").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail8").text("");}});
-//Check if element nine is filled:
-$("#name9").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorName9").text("Este campo é obrigatorio");}
-	else{ $("#ErrorName9").text("");}});
-$("#email9").blur(function(){
-	if($.trim(this.value) == ""){ $("#ErrorEmail9").text("Este campo é obrigatorio");}
-	else if(!emailForm.test($.trim(this.value))){$("#ErrorEmail9").text("Email tem o formato errado");}
-	else{ $("#ErrorEmail9").text("");}});
+
+$('#elements').on('blur','.text',function(){
+	var id = $(this).attr('id');
+	if($.trim(this.value) == ""){ 
+		$("#Error" + id).text("Este campo é obrigatorio");
+	}else if(id.search("email") >= 0){
+		if(!emailForm.test($.trim(this.value))){$("#Error" + id).text("Email tem o formato errado");}
+		else{$("#Error" + id).text("");}
+	}else if(id.search("cellphone") >= 0){
+		if(!phoneForm.test($.trim(this.value))){$("#Error" + id).text("Numero de telemovel tem o formato errado");}
+		else{$("#Error" + id).text("");}
+	}else{ $("#Error" + id).text("");}
+});
 
 //Check if "Detalhe do projecto" is filled:
 $("#projectDescription").blur(function(){

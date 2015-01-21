@@ -1589,7 +1589,13 @@ span:not(.NotRed){
 
 #UploadFicheiro {
 	height: 40px;
-	padding-top: 6px;
+	padding-top: 2px;
+	margin-bottom: 2px;
+}
+
+#AddMember {
+	height: 40px;
+	padding-top: 2px;
 	margin-bottom: 2px;
 }
 
