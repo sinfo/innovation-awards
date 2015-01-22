@@ -29,14 +29,12 @@ $("#team").blur(function(){
 	    $("#RightFileName").text(RightFileName + ".zip ");
 }});
 
-
 //Add new members:
 var NumElementos = 1
 
 $("#AddMember").click(function() {
 	NumElementos++;
 	$('#elements').append(' <div id="element' + NumElementos + '" class="row half">	<h2>' + NumElementos + 'º Elemento</h2><div class="row"><div class="6u"><input type="text" class="text" id="name' + NumElementos + '" name="name' + NumElementos + '" placeholder="Nome" /><span id="Errorname' + NumElementos + '"></span></div><div class="6u"><input type="text" class="text" id="email' + NumElementos + '" name="email' + NumElementos + '" placeholder="Email" /><span id="Erroremail' + NumElementos + '"></span></div></div></div>');
-
 });
 
 //Check if "Elementos" is filled correctly:
@@ -187,25 +185,14 @@ $("#ajaxform").submit(function(form){
 
 	form.preventDefault();
 
-	var NE = document.getElementById('elementsSelector').value;
 	var T = document.getElementById('team').value;
 	var C = document.getElementById('categorySelector').value;
 	var PD = document.getElementById('projectDescription').value;
-
-  if ((NE != 1) && (NE != 2) && (NE != 3) && (NE != 4) && (NE != 5) && (NE != 6) && (NE != 7) && (NE != 8) && (NE != 9) && (T != '') && (C != 'Escolhe a categoria') && (PD != '')){
-		alert("Escolha o numero de elementos do grupo e preencha os respectivos dados");
-		return;
-	}
 
    var formInput = $("#ajaxform").serialize();
     $.post($("#ajaxform").attr('action'),formInput, function(data){
       $(".formInsc").hide();
 			$(".InsMade").show();
-    });
-
-    var formInput = $(".ink-form").serialize();
-      $.post($(".ink-form").attr('action'),formInput, function(data){
-      alert("Thank you for your comment!");
     });
 
     return false;
