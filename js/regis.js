@@ -34,7 +34,7 @@ var NumElementos = 1
 
 $("#AddMember").click(function() {
 	NumElementos++;
-	$('#elements').append(' <div id="element' + NumElementos + '" class="row half">	<h2>' + NumElementos + 'º Elemento</h2><div class="row"><div class="6u"><input type="text" class="text" id="name' + NumElementos + '" name="name' + NumElementos + '" placeholder="Nome" /><span id="Errorname' + NumElementos + '"></span></div><div class="6u"><input type="text" class="text" id="email' + NumElementos + '" name="email' + NumElementos + '" placeholder="Email" /><span id="Erroremail' + NumElementos + '"></span></div></div></div>');
+	$('#elements').append(' <div id="element' + NumElementos + '" class="row half">	<h2>' + NumElementos + 'º Elemento</h2><div class="row"><div class="6u"><input type="text" class="text" id="name' + NumElementos + '" name="name[]" placeholder="Nome" /><span id="Errorname' + NumElementos + '"></span></div><div class="6u"><input type="text" class="text" id="email' + NumElementos + '" name="email[]" placeholder="Email" /><span id="Erroremail' + NumElementos + '"></span></div></div></div>');
 });
 
 //Check if "Elementos" is filled correctly:
@@ -185,15 +185,14 @@ $("#ajaxform").submit(function(form){
 
 	form.preventDefault();
 
-	var T = document.getElementById('team').value;
-	var C = document.getElementById('categorySelector').value;
-	var PD = document.getElementById('projectDescription').value;
-
-   var formInput = $("#ajaxform").serialize();
-    $.post($("#ajaxform").attr('action'),formInput, function(data){
-      $(".formInsc").hide();
+	if (ProjUp) {
+	    var formInput = $("#ajaxform").serialize();
+	    $.post($("#ajaxform").attr('action'),formInput, function(data){
+	      	$(".formInsc").hide();
 			$(".InsMade").show();
-    });
+	    });		
+	}
+
 
     return false;
 });
