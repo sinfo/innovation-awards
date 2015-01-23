@@ -23,9 +23,33 @@
 	$GNU = str_replace(' ','_',$GNU);
 	$CU = strtoupper($C);
 
-	$Proj = $CU . '_' . $GNU . '.zip';
+	$JSON = $CU . '_' . $GNU;
+
+	$Proj = $JSON . '.zip';
 
 	$LinkProj = 'http://www.innovation.awards.pt/files/Proj/' . $Proj;
+
+	if (!file_exists('files/JSON/')) {
+	    mkdir('files/JSON/', 0777, true);
+	}
+
+	$content = '';
+	for ($i=0; $i < $num; $i++) { 
+		$content .= '{"Nome":"' . $EN[$i] . '","Email":"' . $EE[$i] . '"';
+		if ($i == 0) {
+			$content .= ',"Telemovel":"' . $EP1 . '"';
+		}
+		if ($i == $num - 1) {
+			$content .= '}';
+		}else{
+			$content .= '},';	
+		}
+	}
+
+	$ProjFile = '{"Projecto":"' . $GN . '","Categoria":"' . $C . '","Elementos":[' . $content . '],"Descricao":"' . $PD . '"}';
+
+	file_put_contents('files/JSON/' . $JSON . '.json', json_encode($ProjFile));
+
 
 	$ExtraLine = '';
 
@@ -36,10 +60,16 @@
 	//Email Cliente:
 	$message = 'Caro(a) sr(a). ' . $EN[0] .' o seu projecto encontra-se inscrito no evento ';
 	$Subject = 'Registo Innovation Awards';
-	$headers = 'From: Innovation-awards <miguel.f.araujo@tecnico.ulisboa.pt>';
+	$headers = 'From: Innovation-awards <innovation@awards.pt>';
 	mail($EE[0], $Subject, $message, $headers);
+	//Email Cliente:
+	$message = '[Nova Inscrição][' . $C . '][' . $GN . ']';
+	$Subject = '[Nova Inscrição][' . $C . ']';
+	$headers = 'From: Innovation-awards <innovation@awards.pt>';
+	$to = 'miguel.araujo93@gmail.com'
+	mail($to, $Subject, $message, $headers);
 	//Email IA:
-	$to = 'miguel.araujo93@gmail.com';
+	$to = 'innovation@awards.pt';
     $Subject = '[Nova Inscrição][' . $C . ']';
 	$message = "
 	<html>
@@ -75,4 +105,5 @@
 	$headers .= 'From: Innovation-awards <miguel.f.araujo@tecnico.ulisboa.pt>' . "\r\n";
 	//Send
 	mail($to, $Subject, $message, $headers);
+
 ?>
