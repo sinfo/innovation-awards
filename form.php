@@ -66,7 +66,7 @@
 	$message = '[Nova Inscrição][' . $C . '][' . $GN . ']';
 	$Subject = '[Nova Inscrição][' . $C . ']';
 	$headers = 'From: Innovation-awards <innovation@awards.pt>';
-	$to = 'miguel.araujo93@gmail.com'
+	$to = 'miguel.araujo93@gmail.com';
 	mail($to, $Subject, $message, $headers);
 	//Email IA:
 	$to = 'innovation@awards.pt';
