@@ -2,12 +2,16 @@ var hasError = true;
 
 $(".formInsc").hide();
 $(".InsMade").hide();
-$("#Inscrever").click(function() {
-	$(".InsButton").hide();
-	$(".formInsc").show();});
-$("#categorySelector").change();
+$('.AdminPanel').hide();
+
 $("#categorySelector").change(function(){
-	$("#ErrorCategorySel").text("");});
+	$("#ErrorCategorySel").text("");}
+);
+
+/***********************************************
+	Check Project Name and set Project 
+***********************************************/
+
 $("#team").blur(function(){
 	if(this.value == ""){ $("#ErrorProjectname").text("Este campo é obrigatorio");}
 	else{ 
@@ -29,7 +33,9 @@ $("#team").blur(function(){
 	    $("#RightFileName").text(RightFileName + ".zip ");
 }});
 
-//Add new members:
+/***********************************************
+	   			ADD NEW MEMBERS
+***********************************************/
 var NumElementos = 1
 
 $("#AddMember").click(function() {
@@ -37,9 +43,15 @@ $("#AddMember").click(function() {
 	$('#elements').append(' <div id="element' + NumElementos + '" class="row half">	<h2>' + NumElementos + 'º Elemento</h2><div class="row"><div class="6u"><input type="text" class="text" id="name' + NumElementos + '" name="name[]" placeholder="Nome" /><span id="Errorname' + NumElementos + '"></span></div><div class="6u"><input type="text" class="text" id="email' + NumElementos + '" name="email[]" placeholder="Email" /><span id="Erroremail' + NumElementos + '"></span></div></div></div>');
 });
 
-//Check if "Elementos" is filled correctly:
+/***********************************************
+	   	  EMAIL & PHONE FORMAT CHECK
+***********************************************/
 var emailForm = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 var phoneForm = /^[+-]?([0-9]{1,5})?\s?([0-9]{9,12})+$/;
+
+/***********************************************
+	   		ELEMENTS INFO CHECK
+***********************************************/
 
 $('#elements').on('blur','.text',function(){
 	var id = $(this).attr('id');
@@ -54,13 +66,21 @@ $('#elements').on('blur','.text',function(){
 	}else{ $("#Error" + id).text("");}
 });
 
+/***********************************************
+	   		PROJECT INFO CHECK
+***********************************************/
+
 //Check if "Detalhe do projecto" is filled:
 $("#projectDescription").blur(function(){
 	if(this.value == ""){ $("#ErrorProjectDescription").text("Este campo é obrigatorio");}
-	else{ $("#ErrorProjectDescription").text("");}});
+	else{ $("#ErrorProjectDescription").text("");}
+});
 
 
-//Check Upload doc
+/***********************************************
+	    CHECK FILE NAME, FORMAT & SIZE
+***********************************************/
+
 function fileSelected() {
   var file = document.getElementById('fileToUpload').files[0];
 
@@ -133,23 +153,31 @@ function fileSelected() {
     $(".ButtonUp").show();
   }
 }
+
+/***********************************************
+				UPLOAD ZIP
+***********************************************/
+
 var ProjUp = false;
 
 function uploadFile(){
 
+
 	var file = document.getElementById('fileToUpload').files[0];
+	var params = "id=" + sessionID;
 
 	$(".ButtonUp").hide();
 
 	if (file) {
 		var form = new FormData(file);
 	  form.append("fileToUpload", file);
+	  form.append("id", sessionID);
 	  var ajax = new XMLHttpRequest();
 		ajax.upload.addEventListener("progress", progressHandler, false);
 		ajax.addEventListener("load", completeHandler, false);
 		ajax.addEventListener("error", errorHandler, false);
 		ajax.addEventListener("abort", abortHandler, false);
-		ajax.open("POST", "Upload.php");
+		ajax.open("POST", "php/uploadProj.php");
 		ajax.send(form);
 	}
 }
@@ -158,9 +186,6 @@ function progressHandler(evt) {
   if (evt.lengthComputable) {
     var percentComplete = Math.round(evt.loaded * 100 / evt.total);
     document.getElementById('UploadFile').innerHTML = "Upload progress:" + percentComplete.toString() + '%';
-  }
-  else {
-    //document.getElementById('progressNumber').innerHTML = 'unable to compute';
   }
 }
 
@@ -181,18 +206,143 @@ function abortHandler(evt) {
   alert("The upload has been canceled by the user or the browser dropped the connection.");
 }
 
+/***********************************************
+				SUBMIT FORM
+***********************************************/
+
 $("#ajaxform").submit(function(form){
 
 	form.preventDefault();
 
 	if (ProjUp) {
-	    var formInput = $("#ajaxform").serialize();
-	    $.post($("#ajaxform").attr('action'),formInput, function(data){
-	      	$(".formInsc").hide();
+
+	  $("#categorySelector").prop('disabled', false);
+		$("#team").prop('disabled', false);
+
+		console.log($("ajaxform").serialize());
+
+	  var form = $("#ajaxform").serialize();
+	  $.post($("#ajaxform").attr('action'),form, function(data){
+	    $(".formInsc").hide();
 			$(".InsMade").show();
-	    });		
+
+			console.log(data);
+	  });		
 	}
 
-
     return false;
+});
+
+/***********************************************
+				GET Project
+***********************************************/
+
+function GetProject(profileID){
+
+	//Get project data
+	$.getJSON( "files/JSON/" + profileID + ".json", function( content ) {
+		
+		//Fill form with json data:
+		$('#ProjectID').val(profileID);
+		$('#roleType').val(role);
+    $("#categorySelector").val(content.Category);
+    $('#team').val(content.Project);
+
+    $("#categorySelector").prop('disabled', true);
+    $("#team").prop('disabled', true);
+
+    var NumPeople = content.NumPeople;
+    var Users = content.Users;
+
+    $('#name1').val(Users[0].Name);
+    $('#email1').val(Users[0].Email);
+    $('#cellphone1').val(Users[0].Phone);
+
+    for (var i = 1; i < NumPeople; i++) {
+    	$("#AddMember").click();
+    	$('#name' + NumElementos).val(Users[i].Name);
+    	$('#email' + NumElementos).val(Users[i].Email);
+    };
+
+		$('#projectDescription').val(content.Description);
+
+		ProjUp = true;
+
+		if (role == 'Admin') {
+
+			$('#backOrReset').attr('type','back');
+			$('#backOrReset').val('retroceder');
+			$('#backOrReset').addClass('GetBack');
+
+			$('#fileToUpload').hide();
+			$(".ButtonUp").show();
+			$("#UploadFicheiro").hide();
+			$("#DownloadFicheiro").show();
+
+			$('#DownloadFicheiro').attr("href", content.ProjectDir );
+		};
+		
+  });
+}
+
+var role = '';
+
+function GetFiles(profileID){
+
+	$.ajax({
+    url: 'php/getfiles.php',
+    type: 'POST',
+    dataType: 'json',
+    data: { userID : profileID },
+  })
+  .done(function(data) {
+  	displayFiles(data, profileID);
+  });
+}
+
+function displayFiles(content, profileID){
+
+	var Projects = content.Projects;
+
+	for (var i = 0; i < content.NumOfFiles; i++) {
+
+		$.getJSON( "files/JSON/" + Projects[i].File , function(info) {
+
+			$('#listproj').append(' <div class="12u openProj" name="' + info.Category +'" id="UploadProjecto" style="margin-bottom: 10px;"><div class="12u FileInfo"><div class="12u FileInfo2"><div class="2u" id="fileName" style="margin-top: 13px;">'+ info.Category +'</div><div class="7u" id="fileSize" style="margin-top: 13px;">'+ info.Project +'</div><div class="3u" style="margin-bottom: 10px;float: right;"><a id="GetProj" name="'+ info.ProjID +'" class="button" >Ver projecto</a></div></div></div></div>');
+		});
+	}
+}
+
+$('#listproj').on('click','#GetProj',function(){
+	var id = $(this).attr('name');
+	GetProject(id);
+
+	$(".AdminPanel").hide();
+	$(".formInsc").show();
+});
+
+$('.actions').on('click','.GetBack',function(){
+	$(".AdminPanel").show();
+	$(".formInsc").hide();
+});
+
+
+/***********************************************
+							Filter Categories
+***********************************************/
+
+$("#ChooseWhatToSee").change(function(){
+
+	$('.openProj').hide();
+	if($(this).val() == 'videogames'){
+		$("div[name='videogames']").show();
+	}else if ($(this).val() == 'lifestyle') {
+		$("div[name='lifestyle']").show();
+	}else if ($(this).val() == 'social') {
+		$("div[name='social']").show();
+	}else if ($(this).val() == 'business') {
+		$("div[name='business']").show();
+	}else{
+		$('.openProj').show();
+	}
 });

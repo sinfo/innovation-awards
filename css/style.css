@@ -601,7 +601,7 @@
 					}
 	
 	/* Buttons */
-		
+
 		.button
 		{
 			-webkit-appearance: none;
@@ -626,6 +626,14 @@
 			{
 				background: #4f4f4f;
 			}
+
+		.fb{
+			background: #3b5998;
+		}
+		
+		.fb:hover{
+			background: #4c70ba;
+		}
 			
 		.button.alt
 		{

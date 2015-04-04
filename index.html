@@ -47,7 +47,7 @@
 					<div><a href="#first" class="scrolly">Tracks</a></div>
 					<div><a href="#third" class="scrolly">Prémios</a></div>
 					<div><a href="#fourth" class="scrolly">Inscrições</a></div>
-					<div><a href="./regulamento.pdf" target="_blank"> Regulamento</a></div>
+					<div><a href="files/regulamento.pdf" target="_blank"> Regulamento</a></div>
 				</div>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 			<section id="header" class="dark">
 					<div class="container">
 						<div class="row">
-							<div class="6u">
+							<div class="6u" style="margin-left: auto; float: none; margin-right: auto;">
 								<h6>Parceiros oficiais</h6>
 								<img class="sponsor-logo" src="images/miniclip.png">
 								<img class="sponsor-logo" src="images/microsoft.png">
@@ -298,11 +298,49 @@
 				<header>
 					<div class="container">
 						<h2>Periodo de inscrições aberto</h2>
+						<div style="margin-top: 20px; margin-bottom: 0px"><span class="NotRed">Faz login para inscreveres ou alterares teu projecto.</span></div>
 						<footer>
-							<a id="Inscrever" class="button scrolly">Inscrever</a>
+							<a id="Inscrever" onclick="login();" class="button fb scrolly">Login with facebook</a>
 						</footer>
 					</div>
 				</header>
+			</section>
+			<section id="fourth" class="main AdminPanel">
+				<header>
+					<div class="container">
+						<h2>Admin Panel</h2>
+					</div>
+				</header>
+				<div class="content style4 featured">
+					<div class="container small">
+						<form>
+							<div id="notRegisteredFields">
+								<div class="row">
+									<div class="12u">
+										<h3>Categoria</h3>
+										<select id="ChooseWhatToSee" name="ChooseWhatToSee">
+											<option value="all" class="placeholder" selected>Ver todas as categorias</option>
+											<option value="videogames">Videogames</option>
+											<option value="lifestyle">Lifestyle</option>
+											<option value="social">Social</option>
+											<option value="business">Business</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="12u">
+										<h3>Projectos</h3>
+										<br>
+										<div id='listproj'>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
 			</section>
 			<section id="fourth" class="main formInsc">
 				<header>
@@ -312,23 +350,15 @@
 				</header>
 				<div class="content style4 featured">
 					<div class="container small">
-						<form name="ajaxform" id="ajaxform" action="form.php" method="POST">
-							<!--<div class="row">
-								<div class="12u">
-									<select id="registeredSelector" name="registeredSelector">
-										<option class="placeholder" selected disabled>Pré inscreveste-te?</option>
-    								<option value="registered">Sim, já estou pré-inscrito</option>
-										<option value="notRegistered">Não, tenho que me inscrever</option>
-									</select>
-								</div>
-							</div>-->
-							<br>
+						<form name="ajaxform" id="ajaxform" action="php/uploadInfo.php" method="POST">
+							<input type="text" id="ProjectID" name="ProjectID" style="display:none" />
+							<input type="text" id="roleType" name="roleType" style="display:none" />
 							<div id="notRegisteredFields">
 								<div class="row">
 									<div class="12u">
 										<h3>Categoria</h3>
 										<select id="categorySelector" name="categorySelector">
-											<option class="placeholder" selected disabled>Escolhe a categoria</option>
+											<option class="placeholder" selected>Escolhe a categoria</option>
 	    								<option value="videogames">Videogames</option>
 											<option value="lifestyle">Lifestyle</option>
 											<option value="social">Social</option>
@@ -351,8 +381,8 @@
 											<div id="element1" class="row half">
 												<h2 style>1º Elemento - Responsável</h2>
 												<div class="row" style="margin-bottom: 20px;">
-													<div class="6u"><input type="text" class="text" id="name1" name="name[]" placeholder="Nome" /><span id="Errorname1"></span></div>
-													<div class="6u"><input type="text" class="text" id="email1" name="email[]" placeholder="Email" /><span id="Erroremail1"></span></div>
+													<div class="6u"><input type="text" class="text" id="name1" name="name[]" placeholder="Nome"/><span id="Errorname1"></span></div>
+													<div class="6u"><input type="text" class="text" id="email1" name="email[]" placeholder="Email"/><span id="Erroremail1"></span></div>
 												</div>
 												<div class="row row2">
 														<div class="6u"><input type="text" class="text" id="cellphone1" name="cellphone1" placeholder="Telemóvel" /><span id="Errorcellphone1"></span></div>
@@ -397,10 +427,11 @@
     											<div class="2u" id="ProjfileSize"></div>
     											<div class="3u" id="ProjfileType"></div>
 												</div>
-    										<div class="12u ButtonUp">
-    											<a id="UploadFicheiro" class="button" onclick="uploadFile();">Upload</a>
-    										</div>
-    										<div class="12u" class="UploadFile" id="UploadFile"></div>
+	    										<div class="12u ButtonUp">
+	    											<a id="UploadFicheiro" class="button" onclick="uploadFile();">Upload</a>
+	    											<a href="" id="DownloadFicheiro" class="button" style="display:none; height: 40px; padding-top: 2px;  margin-bottom: 2px;" download>Download</a>
+	    										</div>
+    											<div class="12u" class="UploadFile" id="UploadFile"></div>
 											</div>
 										</div>
 										<span id="ErrorUploadProjecto"></span>
@@ -415,7 +446,7 @@
 								<div class="12u">
 									<ul class="actions">
 										<li><input id="submitButton" type="submit" class="button" value="Submeter inscrição" /></li>
-										<li><input type="reset" class="button alt" value="Limpar Formulário" /></li>
+										<li><input id="backOrReset" type="reset" class="button alt" value="Limpar Formulário" /></li>
 									</ul>
 								</div>
 							</div>
@@ -430,7 +461,8 @@
 					</div>
 				</header>
 			</section>
-	<script src="js/regis.js"></script>
+	<script src="js/regis2.js"></script>
+	<script src="js/session.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
             var backColor = "#000";
