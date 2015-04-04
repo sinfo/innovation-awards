@@ -55,13 +55,13 @@
 
 		file_put_contents('../files/JSON/' . $FileName . '.json', json_encode($IA, JSON_UNESCAPED_UNICODE));
 		
-		/*//Email Registado:
+		//Email Registado:
 		if ($type == 'Submit') {
 			$message = 'Caro(a) sr(a). ' . $UserName1 .' o seu projecto encontra-se inscrito no evento ';
 			$Subject = 'Registo Innovation Awards';
 			$headers = 'From: Innovation-awards <innovation@awards.pt>';
 			mail($UserEmail1, $Subject, $message, $headers);
-		}*/
+		}
 		
 
 		//Email Developer:
@@ -74,7 +74,7 @@
 		}
 
 		//Email to IA people
-		/*$headers = 'From: Innovation-awards <innovation@awards.pt>';
+		$headers = 'From: Innovation-awards <innovation@awards.pt>';
 		$to = 'miguel.araujo@sinfo.org';
 		mail($to, $Subject, $message, $headers);
 
@@ -113,7 +113,7 @@
 			$headers .= 'From: Innovation-awards <miguel.f.araujo@tecnico.ulisboa.pt>' . "\r\n";
 			//Send
 			mail($to, $Subject, $message, $headers);
-		}*/
+		}
 
 	}
 
