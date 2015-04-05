@@ -285,8 +285,6 @@ function GetProject(profileID){
   });
 }
 
-var role = '';
-
 function GetFiles(profileID){
 
 	$.ajax({
