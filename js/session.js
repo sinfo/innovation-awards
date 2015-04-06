@@ -48,8 +48,6 @@
   function session(){
     FB.api('/me', function(response) {
 
-      console.log(response);
-
       sessionID = response.id;
 
       $.ajax({
@@ -59,8 +57,6 @@
         data: { userID : response.id } ,
       })
       .done(function(data) {
-
-        console.log(data);
 
         $(".InsButton").hide();
 
